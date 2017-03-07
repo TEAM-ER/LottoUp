@@ -10,22 +10,22 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Account {
+public class User {
 
 	@Id
 	@GeneratedValue
 	private Long id;
 
-	@OneToMany(mappedBy = "account")
+	@OneToMany(mappedBy = "user")
 	private Set<Listing> listings = new HashSet<>();
 
 	@JsonIgnore
 	private String username;
 
 	// Default constructor for JPA
-	Account() {}
+	User() {}
 
-	public Account(String username) {
+	public User(String username) {
 		this.username = username;
 	}
 

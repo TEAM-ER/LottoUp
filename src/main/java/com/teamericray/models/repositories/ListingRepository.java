@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Collection;
 
 public interface ListingRepository extends JpaRepository<Listing, Long> {
-	Collection<Listing> findByAccountUsername(String username);
+	Collection<Listing> findByUserId(Long accountId);
 }

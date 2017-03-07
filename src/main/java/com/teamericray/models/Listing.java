@@ -13,33 +13,59 @@ public class Listing {
 
 	@JsonIgnore
 	@ManyToOne
-	private Account account;
+	private User user;
 
+	private String title;
 	private Double targetPrice;
-	private Integer numOfTickets;
+	private Integer numTickets;
 
 	// Default constructor for JPA
 	Listing() {}
 
-	public Listing(Account account, Double targetPrice, Integer numOfTickets) {
-		this.account = account;
+	public Listing(User user, String title, Double targetPrice, Integer numTickets) {
+		this.user = user;
+		this.title = title;
 		this.targetPrice = targetPrice;
-		this.numOfTickets = numOfTickets;
+		this.numTickets = numTickets;
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public Account getAccount() {
-		return account;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public Double getTargetPrice() {
 		return targetPrice;
 	}
 
-	public Integer getNumOfTickets() {
-		return numOfTickets;
+	public void setTargetPrice(Double targetPrice) {
+		this.targetPrice = targetPrice;
+	}
+
+	public Integer getNumTickets() {
+		return numTickets;
+	}
+
+	public void setNumTickets(Integer numTickets) {
+		this.numTickets = numTickets;
 	}
 }

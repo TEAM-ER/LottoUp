@@ -1,8 +1,8 @@
 package com.teamericray;
 
-import com.teamericray.models.Account;
+import com.teamericray.models.User;
 import com.teamericray.models.Listing;
-import com.teamericray.models.repositories.AccountRepository;
+import com.teamericray.models.repositories.UserRepository;
 import com.teamericray.models.repositories.ListingRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,13 +19,20 @@ public class LottoUpApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(AccountRepository accountRepository,
+	CommandLineRunner init(UserRepository userRepository,
 	                       ListingRepository listingRepository) {
 		return (args) -> Arrays.asList("Eric,Raymond".split(",")).forEach(
 				username -> {
-					Account account = accountRepository.save(new Account(username));
-					listingRepository.save(new Listing(account, 50.00, 0));
-					listingRepository.save(new Listing(account, 60.00, 0));
+					if (username.equals("Eric")) {
+						User user = userRepository.save(new User(username));
+						listingRepository.save(new Listing(user, "Macbook Pro",40.00, 5));
+						listingRepository.save(new Listing(user, "Macbook Pro",50.00, 5));
+						listingRepository.save(new Listing(user, "Macbook Pro", 60.00, 5));
+					} else {
+						User user = userRepository.save(new User(username));
+						listingRepository.save(new Listing(user, "Macbook",50.00, 0));
+						listingRepository.save(new Listing(user, "Macbook",60.00, 0));
+					}
 				});
 	}
 }
